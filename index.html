@@ -64,7 +64,7 @@
       animation: inkWrite 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Step 2: Void Rise Entrance for Following Components */
+    /* Step 2: Void Rise Entrance for Following Components (Simultaneous Reveal) */
     @keyframes voidRise {
       0% {
         opacity: 0;
@@ -78,34 +78,14 @@
       }
     }
 
-    .anim-subtext {
-      opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
-    }
-
-    .anim-calendar-section {
-      opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
-    }
-
-    .anim-calendar-box {
-      opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
-    }
-
-    .anim-map-box {
-      opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards;
-    }
-
-    .anim-welcome-box {
-      opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.0s forwards;
-    }
-
+    .anim-subtext,
+    .anim-calendar-section,
+    .anim-calendar-box,
+    .anim-map-box,
+    .anim-welcome-box,
     .anim-faq-box {
       opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     }
   </style>
 </head>
@@ -154,7 +134,7 @@
               <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
                 <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
               </svg>
-              <span>Invite a Friend</span>
+              <span>Invite Someone Special</span>
             </button>
           </div>
         </div>
@@ -369,7 +349,7 @@
       <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
         <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
       </svg>
-      <span>Invite a Friend</span>
+      <span>Invite Someone Special</span>
     </button>
   </div>
 
@@ -379,7 +359,7 @@
       
       <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="text-xl font-bold text-slate-900">Invite a Friend</h3>
+        <h3 class="text-xl font-bold text-slate-900">Invite Someone Special</h3>
         <button type="button" onclick="closeShareModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold leading-none">&times;</button>
       </div>
 
@@ -426,24 +406,18 @@
         </div>
       </div>
 
-      <!-- STEP 2 (DESKTOP VIEW): 4 ACTIONS PER MESSAGE (NO ICONS, EXACT LABELS) -->
+      <!-- STEP 2 (DESKTOP VIEW): 2 ACTIONS PER MESSAGE (COPY & EMAIL) -->
       <div class="hidden sm:block space-y-4">
         <p class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Choose a message to send</p>
         
         <!-- Message 1 Desktop -->
         <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
           <p class="text-slate-800 text-sm leading-relaxed" id="dtMsgText1"></p>
-          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-4 gap-2">
-            <button type="button" onclick="copyMsg(1)" class="py-2.5 px-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
+          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-2 gap-3">
+            <button type="button" onclick="copyMsg(1)" class="py-2.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
               Copy to clipboard
             </button>
-            <button type="button" onclick="shareFB(1)" class="py-2.5 px-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Share to Facebook
-            </button>
-            <button type="button" onclick="shareMessenger(1)" class="py-2.5 px-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Send in Messenger
-            </button>
-            <button type="button" onclick="shareEmail(1)" class="py-2.5 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
+            <button type="button" onclick="shareEmail(1)" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
               Send in an email
             </button>
           </div>
@@ -452,17 +426,11 @@
         <!-- Message 2 Desktop -->
         <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
           <p class="text-slate-800 text-sm leading-relaxed" id="dtMsgText2"></p>
-          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-4 gap-2">
-            <button type="button" onclick="copyMsg(2)" class="py-2.5 px-2 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
+          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-2 gap-3">
+            <button type="button" onclick="copyMsg(2)" class="py-2.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
               Copy to clipboard
             </button>
-            <button type="button" onclick="shareFB(2)" class="py-2.5 px-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Share to Facebook
-            </button>
-            <button type="button" onclick="shareMessenger(2)" class="py-2.5 px-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Send in Messenger
-            </button>
-            <button type="button" onclick="shareEmail(2)" class="py-2.5 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
+            <button type="button" onclick="shareEmail(2)" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
               Send in an email
             </button>
           </div>
@@ -699,28 +667,6 @@
       });
     }
 
-    function shareFB(index) {
-      if (!requireTimeSelected()) return;
-      const fullMsg = getFullMessage(index);
-      const shareUrl = getShareUrl();
-      
-      navigator.clipboard.writeText(fullMsg).then(() => {
-        alert("Invitation copied! Press Ctrl+V (or Cmd+V) to paste your message on Facebook.");
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank', 'width=600,height=500');
-      });
-    }
-
-    function shareMessenger(index) {
-      if (!requireTimeSelected()) return;
-      const fullMsg = getFullMessage(index);
-      const shareUrl = getShareUrl();
-      
-      navigator.clipboard.writeText(fullMsg).then(() => {
-        alert("Invitation copied! Press Ctrl+V (or Cmd+V) to paste your message inside Messenger.");
-        window.open(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(shareUrl)}&app_id=296245292499617&redirect_uri=${encodeURIComponent(shareUrl)}`, '_blank', 'width=600,height=500');
-      });
-    }
-
     function shareEmail(index) {
       if (!requireTimeSelected()) return;
       const subject = encodeURIComponent("Christmas Eve Invitation - St. Paul UMC");
@@ -728,40 +674,34 @@
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
     }
 
-    /* --- MOBILE NATIVE SHARE HANDLER --- */
-    async function triggerMobileShare(index) {
+    /* --- SYNCHRONOUS MOBILE NATIVE SHARE HANDLER --- */
+    function triggerMobileShare(index) {
       if (!requireTimeSelected()) return;
 
       const textToShare = index === 1 ? baseMessage1 : baseMessage2;
-      const shareUrl = getShareUrl();
+      const timeQuery = `?time=${selectedStart}`;
+      const shareUrl = `${window.location.origin}${window.location.pathname}${timeQuery}`;
       const fullMsg = `${textToShare} ${shareUrl}`;
 
       if (navigator.share) {
-        try {
-          await navigator.share({
-            title: "Christmas Eve at St. Paul UMC",
-            text: fullMsg
-          });
-        } catch (err) {
+        navigator.share({
+          title: "Christmas Eve at St. Paul UMC",
+          text: fullMsg
+        }).catch(function(err) {
           if (err.name !== 'AbortError') {
-            console.error('Share failed:', err);
-            fallbackMobileShare(fullMsg);
+            console.warn('Share sheet failed or blocked:', err);
+            fallbackMobileSMS(fullMsg);
           }
-        }
+        });
       } else {
-        fallbackMobileShare(fullMsg);
+        fallbackMobileSMS(fullMsg);
       }
     }
 
-    function fallbackMobileShare(fullMsg) {
-      navigator.clipboard.writeText(fullMsg).then(() => {
-        showToast();
-        alert("Invitation text and link copied to clipboard!");
-      }).catch(() => {
-        const ua = navigator.userAgent.toLowerCase();
-        const sep = (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) ? '&' : '?';
-        window.location.href = `sms:${sep}body=${encodeURIComponent(fullMsg)}`;
-      });
+    function fallbackMobileSMS(fullMsg) {
+      const ua = navigator.userAgent.toLowerCase();
+      const sep = (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) ? '&' : '?';
+      window.location.href = `sms:${sep}body=${encodeURIComponent(fullMsg)}`;
     }
 
     /* --- CALENDAR MODAL HANDLERS --- */
