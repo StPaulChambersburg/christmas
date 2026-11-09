@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Christmas Eve at St. Paul UMC</title>
   
-  <!-- Open Graph Meta Tags (Required for Facebook & Messenger Link Previews) -->
-  <meta property="og:title" content="You're Invited to Christmas Eve at St. Paul UMC" />
-  <meta property="og:description" content="Come celebrate the warmth and peace of Christmas Eve together at St. Paul UMC in Chambersburg, PA." />
-  <meta property="og:image" content="IMG_1236aae8-6656-4959-bbb1-e0697d4fa580.webp" />
-  <meta property="og:type" content="website" />
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Great Vibes (Script), Playfair Display (Festive Header 600 SemiBold), Inter (Clean Body) -->
+  <!-- Google Fonts: Great Vibes (Script) & Inter (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -31,7 +25,6 @@
           fontFamily: {
             script: ['Great Vibes', 'cursive'],
             sans: ['Inter', 'sans-serif'],
-            festive: ['Playfair Display', 'serif'],
           }
         }
       }
@@ -45,7 +38,6 @@
 
     /* --- STAGGERED CINEMATIC ANIMATION TIMELINE --- */
 
-    /* Step 1: Ink Reveal Animation (Writes out and stays in place) */
     @keyframes inkWrite {
       0% {
         clip-path: inset(0 100% 0 0);
@@ -64,7 +56,20 @@
       animation: inkWrite 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Step 2: Void Rise Entrance for Following Components (Simultaneous Reveal) */
+    @keyframes scaleAndMove {
+      0% {
+        transform: translateX(10%) scale(1.6) translateY(25px);
+      }
+      100% {
+        transform: translateX(0%) scale(1) translateY(0);
+      }
+    }
+
+    .anim-graphic-sequence {
+      animation: scaleAndMove 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards;
+      transform: translateX(10%) scale(1.6) translateY(25px);
+    }
+
     @keyframes voidRise {
       0% {
         opacity: 0;
@@ -78,70 +83,75 @@
       }
     }
 
-    .anim-subtext,
-    .anim-calendar-section,
-    .anim-calendar-box,
-    .anim-map-box,
-    .anim-welcome-box,
+    .anim-subtext {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.0s forwards;
+    }
+
+    .anim-calendar-section {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
+    }
+
+    .anim-calendar-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
+    }
+
+    .anim-map-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.4s forwards;
+    }
+
+    .anim-welcome-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.6s forwards;
+    }
+
     .anim-faq-box {
       opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.8s forwards;
     }
   </style>
 </head>
-<body class="bg-lightBg text-slate-800 font-sans min-h-screen overflow-x-hidden">
+<body class="bg-lightBg text-slate-800 font-sans h-auto min-h-full w-full overflow-x-hidden">
 
   <!-- Hero Container Header -->
   <div class="relative hero-curve-shadow z-10">
     <div class="relative bg-brandBlue text-white overflow-hidden">
-      <!-- Background Overlay Photo -->
+      <!-- Background Overlay Photo (75% Opacity) -->
       <div class="absolute inset-0 z-0 opacity-75 bg-cover bg-center" style="background-image: url('IMG_1236aae8-6656-4959-bbb1-e0697d4fa580.webp');"></div>
       
-      <!-- Gradient Overlay for High Text Contrast -->
-      <div class="absolute inset-0 bg-gradient-to-b from-brandBlue/70 via-brandBlue/80 to-brandBlue z-0"></div>
+      <!-- Gradient Overlay for Contrast -->
+      <div class="absolute inset-0 bg-gradient-to-b from-brandBlue/60 via-brandBlue/75 to-brandBlue z-0"></div>
 
       <!-- Hero Content -->
       <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-20">
-        <!-- 1. Calligraphy Reveal Banner (Large & Static Position) -->
-        <div class="mb-4 relative flex justify-start">
+        <!-- 1. Banner Header Animation -->
+        <div class="mb-4 relative anim-graphic-sequence">
           <svg viewBox="0 0 900 140" class="w-full max-w-2xl h-auto overflow-visible">
             <defs>
               <clipPath id="textClip">
                 <rect class="anim-write" x="-50" y="-30" width="1000" height="200" fill="white"/>
               </clipPath>
             </defs>
-            <text x="450" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md" clip-path="url(#textClip)">You're Invited</text>
+            <text x="400" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md" clip-path="url(#textClip)">You're Invited</text>
           </svg>
         </div>
 
-        <!-- 2. Personalized Subtext & Primary Hero Share CTA -->
-        <div class="anim-subtext space-y-6">
-          <h1 class="font-festive font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tight text-white mb-4 drop-shadow-sm">
-            Christmas Eve Services
+        <!-- 2. Subtext Animation -->
+        <div class="anim-subtext space-y-4">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Christmas Eve Candlelight Service
           </h1>
-          <p class="text-slate-200 text-lg sm:text-xl max-w-4xl leading-relaxed">
-            <span>Out of all the places to be this season, someone wants to share Christmas Eve with you.</span><br />
-            <span>We’ve saved a seat for both of you here at St. Paul.</span>
+          <p class="text-slate-200 text-lg sm:text-xl max-w-2xl leading-relaxed">
+            Join us at St. Paul United Methodist Church as we celebrate the warmth, hope, and peace of Christmas Eve together.
           </p>
-
-          <!-- Big Unmissable Hero Share CTA -->
-          <div class="pt-2">
-            <button 
-              type="button" 
-              onclick="openShareModal()" 
-              class="inline-flex items-center space-x-3 bg-brandGold hover:bg-yellow-400 text-brandBlue font-extrabold text-base sm:text-lg px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 active:translate-y-0 transition-all focus:outline-none focus:ring-4 focus:ring-brandGold/50"
-            >
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-              </svg>
-              <span>Invite Someone Special</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Architectural Blue Arc Vector Edge -->
+    <!-- Architectural Blue Arc Vector forming the bottom edge of the banner -->
     <div class="relative w-full overflow-hidden leading-none -mt-1">
       <svg class="block w-full h-12 text-brandBlue" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,0 Q600,100 1200,0 L1200,0 L0,0 Z" fill="currentColor"></path>
@@ -159,73 +169,43 @@
       </h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        
-        <!-- 3. Calendar Action Box -->
+        <!-- 3. Calendar Box Animation -->
         <div class="w-full p-4 sm:p-5 rounded-xl border border-slate-200 bg-slate-50 space-y-3 flex flex-col justify-between anim-calendar-box">
-          <div class="space-y-3">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <div class="flex flex-row items-center space-x-4">
+            
+            <!-- Modern Bold Line Calendar Icon -->
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="18" height="17" rx="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 2v4M8 2v4M3 9h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="7" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
+              <rect x="11.5" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
+              <rect x="16" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
+            </svg>
+
+            <div class="flex-grow space-y-2">
+              <p class="font-bold text-slate-900 text-base sm:text-xl">December 24, 2026</p>
               
-              <!-- Modern Bold Line Calendar Icon -->
-              <svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="4" width="18" height="17" rx="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 2v4M8 2v4M3 9h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="7" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
-                <rect x="11.5" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
-                <rect x="16" y="13" width="2.5" height="2.5" rx="0.5" fill="currentColor"/>
-              </svg>
-
-              <div class="flex-grow space-y-2 w-full">
-                <p class="font-bold text-slate-900 text-base sm:text-xl">December 24, 2026</p>
-                
-                <!-- 3-Time Service Selector Toggle Buttons -->
-                <div class="grid grid-cols-3 gap-1.5 w-full" id="timeSelector">
-                  <button 
-                    type="button"
-                    data-start="11:00"
-                    data-end="12:00"
-                    data-label="11:00 AM"
-                    data-location="Sanctuary (Traditional)"
-                    data-desc="Traditional Service in the Sanctuary with special music from our Choir. Enter through the big red doors."
-                    onclick="selectServiceTime(this)" 
-                    class="service-time-btn border-2 border-slate-300 bg-white text-slate-700 hover:border-slate-400 font-bold py-1.5 px-1 rounded-lg text-xs transition text-center"
-                  >
-                    11:00 AM
-                  </button>
-                  <button 
-                    type="button"
-                    data-start="19:00"
-                    data-end="20:00"
-                    data-label="7:00 PM"
-                    data-location="Family Life Center (Contemporary)"
-                    data-desc="A contemporarty service in the Family Life Center led by our Worship Team. Enter through the glass doors under the portico."
-                    onclick="selectServiceTime(this)" 
-                    class="service-time-btn border-2 border-slate-300 bg-white text-slate-700 hover:border-slate-400 font-bold py-1.5 px-1 rounded-lg text-xs transition text-center"
-                  >
-                    7:00 PM
-                  </button>
-                  <button 
-                    type="button"
-                    data-start="22:00"
-                    data-end="23:00"
-                    data-label="10:00 PM"
-                    data-location="Sanctuary (Contemplative)"
-                    data-desc="A quiet, contemplative late-night service in the Sanctuary with a special performance from our Bell Choir. Enter through the big red doors."
-                    onclick="selectServiceTime(this)" 
-                    class="service-time-btn border-2 border-slate-300 bg-white text-slate-700 hover:border-slate-400 font-bold py-1.5 px-1 rounded-lg text-xs transition text-center"
-                  >
-                    10:00 PM
-                  </button>
-                </div>
+              <!-- Time Selector Toggle Buttons (Unselected Initially) -->
+              <div class="grid grid-cols-2 gap-2 w-full" id="timeSelector">
+                <button 
+                  type="button"
+                  onclick="selectServiceTime('17:00', '18:00', '5:00 PM', this)" 
+                  class="service-time-btn border-2 border-slate-300 bg-white text-slate-700 hover:border-slate-400 font-bold py-1.5 px-2 rounded-lg text-xs sm:text-sm transition text-center"
+                >
+                  5:00 PM
+                </button>
+                <button 
+                  type="button"
+                  onclick="selectServiceTime('19:00', '20:00', '7:00 PM', this)" 
+                  class="service-time-btn border-2 border-slate-300 bg-white text-slate-700 hover:border-slate-400 font-bold py-1.5 px-2 rounded-lg text-xs sm:text-sm transition text-center"
+                >
+                  7:00 PM
+                </button>
               </div>
-            </div>
-
-            <!-- Dynamic Brief Description Box (Reveals on Selection) -->
-            <div id="serviceDescription" class="hidden text-xs text-slate-600 bg-slate-100/90 border border-slate-200/80 p-2.5 rounded-lg leading-relaxed transition-all">
-              <!-- Dynamically Populated -->
             </div>
           </div>
 
-          <!-- Trigger Calendar Options Modal -->
+          <!-- Trigger Calendar Options Prompt -->
           <button 
             type="button"
             onclick="promptCalendarChoice()" 
@@ -236,7 +216,7 @@
           </button>
         </div>
 
-        <!-- 4. Smart Map Navigation Box -->
+        <!-- 4. Map Box Animation -->
         <button 
           type="button"
           onclick="openSmartMap()" 
@@ -244,7 +224,7 @@
         >
           <div class="flex flex-row items-center space-x-4">
             
-            <!-- Location Pin Icon -->
+            <!-- Solid Fill Location Pin Icon -->
             <svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-800 group-hover:text-brandBlue transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C7.58172 2 4 5.58172 4 10C4 15.25 10.2 21.2 11.234 22.15C11.666 22.54 12.334 22.54 12.766 22.15C13.8 21.2 20 15.25 20 10C20 5.58172 16.4183 2 12 2ZM12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" />
             </svg>
@@ -269,213 +249,44 @@
     <!-- EDITORIAL CONTENT SECTION -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       
-      <!-- 5a. Personalized Welcome Story Card -->
+      <!-- 5. Copy Boxes: Welcome Story Card -->
       <section class="lg:col-span-7 anim-welcome-box">
         <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full">
           <h2 class="text-2xl font-bold text-slate-900 mb-4">
-            A Place Saved Just for You
+            A Warm Welcome Awaits You
           </h2>
           <div class="space-y-4 text-slate-700 text-lg leading-relaxed">
             <p>
-              Whoever shared this page with you wanted you to have a warm, welcoming place to celebrate this holiday season.
+              Whether you are a longtime neighbor or visiting family for the holidays, we would love to share this special evening with you. Our Christmas Eve candlelight service features traditional carols, an encouraging message, and the quiet beauty of a dimly lit sanctuary filled with candlelight.
             </p>
-            <div class="space-y-2 text-base text-slate-600 border-l-2 border-brandGold pl-4 my-2">
-              <p>
-                <a href="#timeSelector" onclick="triggerTimeSelect('11:00')" class="text-slate-900 font-bold hover:text-brandBlue hover:underline transition">
-                  11:00 AM Traditional Service:
-                </a> 
-                A merry celebration of Christmas in the Sanctuary with traditional hymns, and the joyful sounds of our church choir.
-              </p>
-              <p>
-                <a href="#timeSelector" onclick="triggerTimeSelect('19:00')" class="text-slate-900 font-bold hover:text-brandBlue hover:underline transition">
-                  7:00 PM Contemporary Service:
-                </a> 
-                Led by our Worship Team in the Family Life Center, we'll rejoice in the traditional story of the birth of Christ through a contemporary lens. With Christmas carols, old and new, and an activity center for young children and their families.
-              </p>
-              <p>
-                <a href="#timeSelector" onclick="triggerTimeSelect('22:00')" class="text-slate-900 font-bold hover:text-brandBlue hover:underline transition">
-                  10:00 PM Traditional Service:
-                </a> 
-                A late-night service in the Sanctuary that encourages participants to reflect upon the good news that our Savior is born. We will sing Christmas carols, and enjoy a beautiful and serene performance from our Bell Choir, allowing for contemplation and introspection on the word of the Lord.
-              </p>
-            </div>
             <p>
-              Come as you are. There is no dress code, and friendly volunteers will be at the door to help you find a seat.
+              Come as you are. There is no dress code, and we have dedicated friendly volunteers ready to help you find a comfortable seat.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 5b. What to Expect Card -->
+      <!-- 5. Copy Boxes: Frequently Asked Questions / What to Expect Card -->
       <section class="lg:col-span-5 anim-faq-box">
         <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full">
           <h3 class="text-xl font-bold text-slate-900 mb-4">
-            FAQ
+            What to Expect
           </h3>
           <dl class="space-y-4">
             <div>
-              <dt class="font-semibold text-slate-900 text-lg">Where do I park?</dt>
-              <dd class="text-slate-600 text-base">There is ample parking located right in front of the Church.</dd>
-            </div>
-            <div>
               <dt class="font-semibold text-slate-900 text-lg">What should I wear?</dt>
-              <dd class="text-slate-600 text-base">Whatever makes you feel comfortable! There is no dress code.</dd>
+              <dd class="text-slate-600 text-base">Anything from casual sweater and jeans to Sunday best—wear whatever makes you feel comfortable!</dd>
             </div>
             <div>
               <dt class="font-semibold text-slate-900 text-lg">Is childcare available?</dt>
-              <dd class="text-slate-600 text-base">There is no childcare provided during Christmas Eve services, but children are invited to worship alongside their families in all services.</dd>
-            </div>
-            <div>
-              <dt class="font-semibold text-slate-900 text-lg">Where is the Sanctuary?</dt>
-              <dd class="text-slate-600 text-base">The Sanctuary is located through the big red doors. You'll see them right from the parking lot.</dd>
-            </div>
-            <div>
-              <dt class="font-semibold text-slate-900 text-lg">Where is the Family Life Center?</dt>
-              <dd class="text-slate-600 text-base">Looking at the building from the parking lot, the FLC is located to the right, through the glass doors under the portico.</dd>
+              <dd class="text-slate-600 text-base">Yes! Nursery care (Ages 0–4) is available during our early service. Children are also warmly welcomed in the main worship sanctuary.</dd>
             </div>
           </dl>
         </div>
       </section>
+
     </div>
   </main>
-
-  <!-- Persistent Floating Share Button (Bottom Right) -->
-  <div class="fixed bottom-6 right-6 z-40">
-    <button 
-      type="button" 
-      onclick="openShareModal()" 
-      class="relative inline-flex items-center space-x-2 bg-brandGold hover:bg-yellow-400 text-brandBlue font-extrabold text-sm sm:text-base px-5 py-3 rounded-full shadow-2xl transition-transform hover:scale-105 active:scale-95 border border-white/40"
-    >
-      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-      </svg>
-      <span>Invite Someone Special</span>
-    </button>
-  </div>
-
-  <!-- Share Modal Window -->
-  <div id="shareModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
-    <div class="bg-white rounded-t-2xl sm:rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 class="text-xl font-bold text-slate-900">Invite Someone Special</h3>
-        <button type="button" onclick="closeShareModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold leading-none">&times;</button>
-      </div>
-
-      <!-- Toast Feedback Message -->
-      <div id="shareCopyToast" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold p-2.5 rounded-xl text-center">
-        ✓ Copied invitation & link to clipboard!
-      </div>
-
-      <!-- STEP 1: SERVICE TIME SELECTION -->
-      <div class="space-y-2 bg-amber-50/70 border border-amber-200/80 p-3.5 rounded-xl transition-all" id="modalTimeBox">
-        <div class="flex items-center justify-between">
-          <label class="text-xs font-bold uppercase tracking-wider text-slate-700">
-            1. Select Service Time
-          </label>
-          <span id="timeSelectNotice" class="text-xs font-bold text-amber-700 hidden">
-            ⚠️ Please select a time first
-          </span>
-        </div>
-        <div class="grid grid-cols-3 gap-2" id="modalTimeSelector">
-          <button 
-            type="button" 
-            onclick="selectModalTime('11:00')" 
-            data-modal-time="11:00" 
-            class="modal-time-btn border-2 border-slate-300 bg-white text-slate-700 font-bold py-2 px-1 rounded-xl text-xs transition text-center hover:border-slate-400"
-          >
-            11:00 AM
-          </button>
-          <button 
-            type="button" 
-            onclick="selectModalTime('19:00')" 
-            data-modal-time="19:00" 
-            class="modal-time-btn border-2 border-slate-300 bg-white text-slate-700 font-bold py-2 px-1 rounded-xl text-xs transition text-center hover:border-slate-400"
-          >
-            7:00 PM
-          </button>
-          <button 
-            type="button" 
-            onclick="selectModalTime('22:00')" 
-            data-modal-time="22:00" 
-            class="modal-time-btn border-2 border-slate-300 bg-white text-slate-700 font-bold py-2 px-1 rounded-xl text-xs transition text-center hover:border-slate-400"
-          >
-            10:00 PM
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2 (DESKTOP VIEW): 2 ACTIONS PER MESSAGE (COPY & EMAIL) -->
-      <div class="hidden sm:block space-y-4">
-        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Choose a message to send</p>
-        
-        <!-- Message 1 Desktop -->
-        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
-          <p class="text-slate-800 text-sm leading-relaxed" id="dtMsgText1"></p>
-          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-2 gap-3">
-            <button type="button" onclick="copyMsg(1)" class="py-2.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Copy to clipboard
-            </button>
-            <button type="button" onclick="shareEmail(1)" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Send in an email
-            </button>
-          </div>
-        </div>
-
-        <!-- Message 2 Desktop -->
-        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
-          <p class="text-slate-800 text-sm leading-relaxed" id="dtMsgText2"></p>
-          <div class="pt-2 border-t border-slate-200/80 grid grid-cols-2 gap-3">
-            <button type="button" onclick="copyMsg(2)" class="py-2.5 px-4 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Copy to clipboard
-            </button>
-            <button type="button" onclick="shareEmail(2)" class="py-2.5 px-4 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-bold transition text-center shadow-sm">
-              Send in an email
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- STEP 2 (MOBILE VIEW): TAP MESSAGE TO TRIGGER NATIVE SHARE SHEET -->
-      <div class="block sm:hidden space-y-3">
-        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Tap a message to send</p>
-        
-        <!-- Mobile Card 1 -->
-        <button 
-          type="button" 
-          onclick="triggerMobileShare(1)" 
-          class="w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-brandGold active:scale-[0.98] transition space-y-3 group shadow-sm"
-        >
-          <p class="text-slate-800 text-xs leading-relaxed" id="mbMsgText1"></p>
-          <div class="flex items-center justify-between pt-1 text-brandBlue font-bold text-xs group-hover:text-amber-700">
-            <span class="flex items-center space-x-1.5">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-              <span>Tap to Send via Share Sheet</span>
-            </span>
-            <span>&rarr;</span>
-          </div>
-        </button>
-
-        <!-- Mobile Card 2 -->
-        <button 
-          type="button" 
-          onclick="triggerMobileShare(2)" 
-          class="w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-brandGold active:scale-[0.98] transition space-y-3 group shadow-sm"
-        >
-          <p class="text-slate-800 text-xs leading-relaxed" id="mbMsgText2"></p>
-          <div class="flex items-center justify-between pt-1 text-brandBlue font-bold text-xs group-hover:text-amber-700">
-            <span class="flex items-center space-x-1.5">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-              <span>Tap to Send via Share Sheet</span>
-            </span>
-            <span>&rarr;</span>
-          </div>
-        </button>
-      </div>
-
-    </div>
-  </div>
 
   <!-- Calendar Choice Modal Prompt -->
   <div id="calendarModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
@@ -486,7 +297,7 @@
       </div>
 
       <div class="space-y-3" id="calendarOptionsList">
-        <!-- Dynamically populated -->
+        <!-- Dynamically populated based on device -->
       </div>
 
       <button 
@@ -499,24 +310,17 @@
     </div>
   </div>
 
-  <!-- Interactive Logic & Routing Scripts -->
+  <!-- Script Utilities -->
   <script>
     let selectedStart = null;
     let selectedEnd = null;
     let selectedLabel = null;
-    let selectedLocation = null;
 
-    const baseMessage1 = "Out of all the places to be this season, I’d love to share Christmas Eve with you. I’ve saved a seat for us at St. Paul UMC!";
-    const baseMessage2 = "Hey! Do you have plans for Christmas Eve yet? I'm heading to St. Paul UMC for their candlelight service and saved a seat for you.";
+    function selectServiceTime(start, end, label, element) {
+      selectedStart = start;
+      selectedEnd = end;
+      selectedLabel = label;
 
-    function selectServiceTime(element) {
-      selectedStart = element.dataset.start;
-      selectedEnd = element.dataset.end;
-      selectedLabel = element.dataset.label;
-      selectedLocation = element.dataset.location;
-      const descriptionText = element.dataset.desc;
-
-      // Update toggle button states on page
       document.querySelectorAll('.service-time-btn').forEach(btn => {
         btn.classList.remove('bg-brandBlue', 'text-white', 'border-brandBlue');
         btn.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
@@ -525,294 +329,123 @@
       element.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
       element.classList.add('bg-brandBlue', 'text-white', 'border-brandBlue');
 
-      // Sync modal time buttons if visible
-      syncModalTimeButtons();
-
-      // Reveal dynamic description box
-      const descEl = document.getElementById('serviceDescription');
-      if (descEl) {
-        descEl.textContent = descriptionText;
-        descEl.classList.remove('hidden');
-      }
-
-      // Update calendar action button
       const actionBtn = document.getElementById('calendarActionButton');
-      if (actionBtn) {
-        actionBtn.innerText = `+ Add ${selectedLabel} Service to Calendar`;
-        actionBtn.classList.remove('text-slate-500');
-        actionBtn.classList.add('text-brandBlue', 'hover:text-slate-900');
-      }
-    }
-
-    function triggerTimeSelect(startTime) {
-      const targetBtn = document.querySelector(`.service-time-btn[data-start="${startTime}"]`);
-      if (targetBtn) {
-        selectServiceTime(targetBtn);
-        targetBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-
-    function selectModalTime(timeStr) {
-      const targetBtn = document.querySelector(`.service-time-btn[data-start="${timeStr}"]`);
-      if (targetBtn) {
-        selectServiceTime(targetBtn);
-      } else {
-        selectedStart = timeStr;
-      }
-      
-      const notice = document.getElementById('timeSelectNotice');
-      if (notice) notice.classList.add('hidden');
-      
-      updateShareModalContent();
-    }
-
-    function syncModalTimeButtons() {
-      document.querySelectorAll('.modal-time-btn').forEach(btn => {
-        if (btn.dataset.modalTime === selectedStart) {
-          btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
-          btn.classList.add('bg-brandBlue', 'text-white', 'border-brandBlue');
-        } else {
-          btn.classList.remove('bg-brandBlue', 'text-white', 'border-brandBlue');
-          btn.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
-        }
-      });
-
-      const notice = document.getElementById('timeSelectNotice');
-      if (notice && selectedStart) {
-        notice.classList.add('hidden');
-      }
+      actionBtn.innerText = `+ Add ${selectedLabel} Service to Calendar`;
+      actionBtn.classList.remove('text-slate-500');
+      actionBtn.classList.add('text-brandBlue', 'hover:text-slate-900');
     }
 
     function isMobileDevice() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    /* --- SHARE MODAL HANDLERS --- */
-    function getShareUrl() {
-      const timeQuery = selectedStart ? `?time=${selectedStart}` : '';
-      return `${window.location.origin}${window.location.pathname}${timeQuery}`;
-    }
-
-    function getFullMessage(index) {
-      const shareUrl = getShareUrl();
-      const text = index === 1 ? baseMessage1 : baseMessage2;
-      return `${text} ${shareUrl}`;
-    }
-
-    function updateShareModalContent() {
-      const url = getShareUrl();
-      const txt1 = `${baseMessage1} ${url}`;
-      const txt2 = `${baseMessage2} ${url}`;
-
-      const dt1 = document.getElementById('dtMsgText1');
-      const dt2 = document.getElementById('dtMsgText2');
-      const mb1 = document.getElementById('mbMsgText1');
-      const mb2 = document.getElementById('mbMsgText2');
-
-      if (dt1) dt1.innerText = txt1;
-      if (dt2) dt2.innerText = txt2;
-      if (mb1) mb1.innerText = txt1;
-      if (mb2) mb2.innerText = txt2;
-
-      syncModalTimeButtons();
-    }
-
-    function requireTimeSelected() {
-      if (!selectedStart) {
-        const notice = document.getElementById('timeSelectNotice');
-        if (notice) {
-          notice.classList.remove('hidden');
-        }
-        const timeBox = document.getElementById('modalTimeBox');
-        if (timeBox) {
-          timeBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          timeBox.classList.add('ring-4', 'ring-amber-500');
-          setTimeout(() => {
-            timeBox.classList.remove('ring-4', 'ring-amber-500');
-          }, 1500);
-        }
-        return false;
-      }
-      return true;
-    }
-
-    function openShareModal() {
-      updateShareModalContent();
-      const modal = document.getElementById('shareModal');
-      if (modal) {
-        modal.classList.remove('hidden');
-      }
-    }
-
-    function closeShareModal() {
-      const modal = document.getElementById('shareModal');
-      if (modal) {
-        modal.classList.add('hidden');
-      }
-    }
-
-    function showToast() {
-      const toast = document.getElementById('shareCopyToast');
-      if (toast) {
-        toast.classList.remove('hidden');
-        setTimeout(() => { toast.classList.add('hidden'); }, 2500);
-      }
-    }
-
-    function copyMsg(index) {
-      if (!requireTimeSelected()) return;
-      const fullText = getFullMessage(index);
-      navigator.clipboard.writeText(fullText).then(() => {
-        showToast();
-      });
-    }
-
-    function shareEmail(index) {
-      if (!requireTimeSelected()) return;
-      const subject = encodeURIComponent("Christmas Eve Invitation - St. Paul UMC");
-      const body = encodeURIComponent(getFullMessage(index));
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
-    }
-
-    /* --- SYNCHRONOUS MOBILE NATIVE SHARE HANDLER --- */
-    function triggerMobileShare(index) {
-      if (!requireTimeSelected()) return;
-
-      const textToShare = index === 1 ? baseMessage1 : baseMessage2;
-      const timeQuery = `?time=${selectedStart}`;
-      const shareUrl = `${window.location.origin}${window.location.pathname}${timeQuery}`;
-      const fullMsg = `${textToShare} ${shareUrl}`;
-
-      if (navigator.share) {
-        navigator.share({
-          title: "Christmas Eve at St. Paul UMC",
-          text: fullMsg
-        }).catch(function(err) {
-          if (err.name !== 'AbortError') {
-            console.warn('Share sheet failed or blocked:', err);
-            fallbackMobileSMS(fullMsg);
-          }
-        });
-      } else {
-        fallbackMobileSMS(fullMsg);
-      }
-    }
-
-    function fallbackMobileSMS(fullMsg) {
-      const ua = navigator.userAgent.toLowerCase();
-      const sep = (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) ? '&' : '?';
-      window.location.href = `sms:${sep}body=${encodeURIComponent(fullMsg)}`;
-    }
-
-    /* --- CALENDAR MODAL HANDLERS --- */
     function promptCalendarChoice() {
       if (!selectedStart) {
-        alert('Please select a service time (11:00 AM, 7:00 PM, or 10:00 PM) first.');
+        alert('Please select a service time (5:00 PM or 7:00 PM) first.');
         return;
       }
       
-      const modalLabel = document.getElementById('modalServiceLabel');
-      if (modalLabel) {
-        modalLabel.innerText = `Choose calendar for ${selectedLabel} Service (${selectedLocation}):`;
-      }
-
+      document.getElementById('modalServiceLabel').innerText = `Choose your calendar application for the ${selectedLabel} Service:`;
       const optionsContainer = document.getElementById('calendarOptionsList');
-      if (optionsContainer) {
-        optionsContainer.innerHTML = '';
-        const isMobile = isMobileDevice();
+      optionsContainer.innerHTML = '';
 
-        // Google Calendar Option
-        optionsContainer.innerHTML += `
-          <button type="button" onclick="openGoogleCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
-            <div class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span class="font-semibold text-slate-900 group-hover:text-brandBlue">Google Calendar</span>
+      const isMobile = isMobileDevice();
+
+      // 1. Google Calendar Option
+      optionsContainer.innerHTML += `
+        <button type="button" onclick="openGoogleCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="font-semibold text-slate-900 group-hover:text-brandBlue">Google Calendar</span>
+          </div>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">Open &rarr;</span>
+        </button>
+      `;
+
+      // 2. Apple Calendar Option
+      optionsContainer.innerHTML += `
+        <button type="button" onclick="openAppleCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <div class="text-left">
+              <span class="font-semibold text-slate-900 group-hover:text-brandBlue block">Apple Calendar</span>
+              <span class="text-xs text-slate-500">${isMobile ? 'Opens native app' : 'Downloads .ics file'}</span>
             </div>
-            <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">Open &rarr;</span>
-          </button>
-        `;
+          </div>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">${isMobile ? 'Open &rarr;' : 'Download &rarr;'}</span>
+        </button>
+      `;
 
-        // Apple Calendar Option
-        optionsContainer.innerHTML += `
-          <button type="button" onclick="openAppleCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
-            <div class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-              <div class="text-left">
-                <span class="font-semibold text-slate-900 group-hover:text-brandBlue block">Apple Calendar</span>
-                <span class="text-xs text-slate-500">${isMobile ? 'Opens native app' : 'Downloads .ics file'}</span>
-              </div>
-            </div>
-            <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">${isMobile ? 'Open &rarr;' : 'Download &rarr;'}</span>
-          </button>
-        `;
+      // 3. Outlook Calendar Option
+      optionsContainer.innerHTML += `
+        <button type="button" onclick="openOutlookCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span class="font-semibold text-slate-900 group-hover:text-brandBlue">Outlook Calendar</span>
+          </div>
+          <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">Open &rarr;</span>
+        </button>
+      `;
 
-        // Outlook Option
-        optionsContainer.innerHTML += `
-          <button type="button" onclick="openOutlookCalendar()" class="w-full flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:border-brandBlue hover:bg-slate-50 transition group">
-            <div class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span class="font-semibold text-slate-900 group-hover:text-brandBlue">Outlook Calendar</span>
-            </div>
-            <span class="text-xs font-medium text-slate-400 group-hover:text-brandBlue">Open &rarr;</span>
-          </button>
-        `;
-      }
-
-      const modal = document.getElementById('calendarModal');
-      if (modal) {
-        modal.classList.remove('hidden');
-      }
+      document.getElementById('calendarModal').classList.remove('hidden');
     }
 
     function closeCalendarModal() {
-      const modal = document.getElementById('calendarModal');
-      if (modal) {
-        modal.classList.add('hidden');
-      }
+      document.getElementById('calendarModal').classList.add('hidden');
     }
 
     function openGoogleCalendar() {
-      const title = encodeURIComponent(`Christmas Eve Service (${selectedLabel}) - ${selectedLocation}`);
-      const details = encodeURIComponent(`Join us at St. Paul UMC for Christmas Eve Candlelight Service and Communion.`);
-      const location = encodeURIComponent(`750 Norland Ave, Chambersburg, PA 17201 (${selectedLocation})`);
+      const title = encodeURIComponent(`Christmas Eve Service (${selectedLabel}) at St. Paul UMC`);
+      const details = encodeURIComponent(`Join us for the ${selectedLabel} Candlelight Christmas Eve Service at St. Paul UMC.`);
+      const location = encodeURIComponent('750 Norland Ave, Chambersburg, PA 17201');
       const startStr = '20261224T' + selectedStart.replace(':', '') + '00';
       const endStr = '20261224T' + selectedEnd.replace(':', '') + '00';
       
       closeCalendarModal();
 
       if (/android/i.test(navigator.userAgent)) {
+        // Android App Intent with Web Fallback
         const intentUrl = `intent://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&details=${details}&location=${location}#Intent;scheme=https;package=com.google.android.calendar;end;`;
         window.location.href = intentUrl;
       } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-        window.location.href = `googlecalendar://params?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}`;
+        // iOS Google Calendar app schema with web fallback
+        window.location.href = `googlegendar://params?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}`;
         setTimeout(() => {
           window.location.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&details=${details}&location=${location}`;
         }, 1000);
       } else {
+        // Desktop Web Link
         window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&details=${details}&location=${location}`, '_blank');
       }
     }
 
     function openAppleCalendar() {
       closeCalendarModal();
-      downloadSelectedICS();
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        // Apple Calendar native intent
+        downloadSelectedICS();
+      } else {
+        downloadSelectedICS();
+      }
     }
 
     function openOutlookCalendar() {
-      const title = encodeURIComponent(`Christmas Eve Service (${selectedLabel}) - ${selectedLocation}`);
-      const body = encodeURIComponent(`Join us at St. Paul UMC for Christmas Eve Candlelight Service and Communion.`);
-      const location = encodeURIComponent(`750 Norland Ave, Chambersburg, PA 17201 (${selectedLocation})`);
+      const title = encodeURIComponent(`Christmas Eve Service (${selectedLabel}) at St. Paul UMC`);
+      const body = encodeURIComponent(`Join us for the ${selectedLabel} Candlelight Christmas Eve Service at St. Paul UMC.`);
+      const location = encodeURIComponent('750 Norland Ave, Chambersburg, PA 17201');
       const startIso = `2026-12-24T${selectedStart}:00`;
       const endIso = `2026-12-24T${selectedEnd}:00`;
 
       closeCalendarModal();
 
       if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Outlook mobile app deep link intent with web fallback
         window.location.href = `ms-outlook://events/new?subject=${title}&body=${body}&location=${location}&start=${startIso}&end=${endIso}`;
         setTimeout(() => {
           window.location.href = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&body=${body}&location=${location}&startdt=${startIso}&enddt=${endIso}`;
         }, 1000);
       } else {
+        // Desktop Web Link
         window.open(`https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&body=${body}&location=${location}&startdt=${startIso}&enddt=${endIso}`, '_blank');
       }
     }
@@ -838,9 +471,9 @@
         'VERSION:2.0',
         'PRODID:-//St. Paul UMC//Christmas Eve//EN',
         'BEGIN:VEVENT',
-        `SUMMARY:Christmas Eve Service (${selectedLabel}) - ${selectedLocation}`,
-        `DESCRIPTION:Join us at St. Paul UMC for Christmas Eve Candlelight Service and Communion.`,
-        `LOCATION:750 Norland Ave, Chambersburg, PA 17201 (${selectedLocation})`,
+        `SUMMARY:Christmas Eve Service (${selectedLabel}) at St. Paul UMC`,
+        `DESCRIPTION:Join us for the ${selectedLabel} Candlelight Christmas Eve Service at St. Paul UMC.`,
+        'LOCATION:750 Norland Ave, Chambersburg, PA 17201',
         `DTSTART:20261224T${startTimeFormatted}`,
         `DTEND:20261224T${endTimeFormatted}`,
         'END:VEVENT',
@@ -855,15 +488,14 @@
       link.click();
       document.body.removeChild(link);
     }
-
-    // Auto-select based on URL parameters (e.g. ?time=19:00)
-    window.addEventListener('DOMContentLoaded', () => {
-      const params = new URLSearchParams(window.location.search);
-      const timeParam = params.get('time');
-      if (timeParam) {
-        triggerTimeSelect(timeParam);
-      }
-    });
+  </script>
+  <script>
+    function sendHeight() {
+      const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+      window.parent.postMessage({ frameHeight: height }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
   </script>
 </body>
 </html>
