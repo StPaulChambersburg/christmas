@@ -574,7 +574,23 @@
     /* --- SHARE MODAL HANDLERS --- */
     function getShareUrl() {
       const timeQuery = selectedStart ? `?time=${selectedStart}` : '';
-      return `${window.location.origin}${window.location.pathname}${timeQuery}`;
+      
+      // 1. Check if the page is embedded inside an iframe on Wix
+      let parentUrl = '';
+      if (window.self !== window.top && document.referrer) {
+        try {
+          // Strip out any existing query parameters from the referrer page
+          const refUrl = new URL(document.referrer);
+          parentUrl = `${refUrl.origin}${refUrl.pathname}`;
+        } catch (e) {
+          parentUrl = '';
+        }
+      }
+
+      // 2. Use Wix parent URL if available; otherwise fallback to current location
+      const baseUrl = parentUrl || `${window.location.origin}${window.location.pathname}`;
+      
+      return `${baseUrl}${timeQuery}`;
     }
 
     function getFullMessage(index) {
