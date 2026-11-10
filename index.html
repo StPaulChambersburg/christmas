@@ -43,28 +43,28 @@
       filter: drop-shadow(0px 8px 8px rgba(15, 23, 42, 0.45));
     }
 
-    /* Single Stroke Cursive Write-Out Animation */
-    @keyframes singleStrokeDraw {
+    /* --- STAGGERED CINEMATIC ANIMATION TIMELINE (FROM INVITED5ANI.HTML) --- */
+
+    /* Step 1: Ink Reveal Animation (Clip-path writes out text) */
+    @keyframes inkWrite {
       0% {
-        stroke-dashoffset: 2000;
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
       }
       100% {
-        stroke-dashoffset: 0;
+        clip-path: inset(0 0% 0 0);
+        opacity: 1;
       }
     }
 
-    .write-out-path {
-      fill: none;
-      stroke: #D4AF37;
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 2000;
-      stroke-dashoffset: 2000;
-      animation: singleStrokeDraw 2.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+    .anim-write {
+      animation: inkWrite 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Void Rise Entrance for Following Components */
+    /* Step 2: Void Rise Entrance for Following Components */
     @keyframes voidRise {
       0% {
         opacity: 0;
@@ -78,14 +78,34 @@
       }
     }
 
-    .anim-subtext,
-    .anim-calendar-section,
-    .anim-calendar-box,
-    .anim-map-box,
-    .anim-welcome-box,
+    .anim-subtext {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
+    }
+
+    .anim-calendar-section {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
+    }
+
+    .anim-calendar-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
+    }
+
+    .anim-map-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards;
+    }
+
+    .anim-welcome-box {
+      opacity: 0;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.0s forwards;
+    }
+
     .anim-faq-box {
       opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 3.2s forwards;
     }
   </style>
 </head>
@@ -102,16 +122,15 @@
 
       <!-- Hero Content -->
       <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20">
-        <!-- 1. Single Stroke Calligraphy Write-Out Banner -->
+        <!-- 1. Calligraphy Write-Out Banner (from invited5ani.html) -->
         <div class="mb-2 sm:mb-4 relative flex justify-start">
-          <svg viewBox="0 0 900 130" class="w-full max-w-2xl h-auto overflow-visible drop-shadow-md">
-            <!-- Single continuous handwriting stroke path -->
-            <g class="write-out-path">
-              <!-- "You're" -->
-              <path d="M 50 25 C 20 60, 25 100, 55 100 C 85 100, 95 50, 75 25 C 60 10, 40 30, 45 65 C 50 90, 80 90, 110 65 L 125 45 M 120 60 C 115 80, 140 85, 145 65 C 150 50, 130 50, 125 65 M 165 45 L 160 70 C 160 85, 180 85, 185 65 M 195 30 L 190 25 M 205 45 C 195 60, 200 80, 220 75 C 230 70, 230 55, 215 55 M 240 45 L 235 80 C 235 95, 215 100, 205 90" />
-              <!-- "Invited" -->
-              <path d="M 310 20 L 310 75 M 310 30 C 330 30, 345 50, 340 75 C 335 90, 320 85, 355 60 M 370 45 L 385 75 L 400 45 M 415 25 L 415 20 M 415 45 L 415 75 M 435 30 L 435 75 M 425 45 L 450 45 M 470 60 C 460 45, 480 40, 485 55 C 490 70, 465 70, 465 60 M 520 20 L 520 75 C 520 85, 505 85, 495 70 C 490 60, 505 45, 520 45" />
-            </g>
+          <svg viewBox="0 0 900 140" class="w-full max-w-2xl h-auto overflow-visible">
+            <defs>
+              <clipPath id="textClip">
+                <rect class="anim-write" x="-50" y="-30" width="1000" height="200" fill="white"/>
+              </clipPath>
+            </defs>
+            <text x="450" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md" clip-path="url(#textClip)">You're Invited</text>
           </svg>
         </div>
 
