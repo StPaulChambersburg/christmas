@@ -43,7 +43,29 @@
       filter: drop-shadow(0px 8px 8px rgba(15, 23, 42, 0.45));
     }
 
-    /* Void Rise Entrance for Header and Following Components */
+    /* Handwriting / Calligraphy Stroke Drawing Animation */
+    @keyframes drawCalligraphy {
+      0% {
+        stroke-dashoffset: 2200;
+        fill-opacity: 0;
+      }
+      70% {
+        stroke-dashoffset: 0;
+        fill-opacity: 0.2;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+      }
+    }
+
+    .calligraphy-path {
+      stroke-dasharray: 2200;
+      stroke-dashoffset: 2200;
+      animation: drawCalligraphy 2.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s forwards;
+    }
+
+    /* Void Rise Entrance for Following Components */
     @keyframes voidRise {
       0% {
         opacity: 0;
@@ -57,7 +79,6 @@
       }
     }
 
-    .anim-header,
     .anim-subtext,
     .anim-calendar-section,
     .anim-calendar-box,
@@ -65,7 +86,7 @@
     .anim-welcome-box,
     .anim-faq-box {
       opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
     }
   </style>
 </head>
@@ -82,10 +103,30 @@
 
       <!-- Hero Content -->
       <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20">
-        <!-- 1. Calligraphy Animated Banner -->
-        <div class="mb-2 sm:mb-4 relative flex justify-start anim-header">
+        
+        <!-- 1. Calligraphy Write-Out Banner -->
+        <div class="mb-2 sm:mb-4 relative flex justify-start">
           <svg viewBox="0 0 900 140" class="w-full max-w-2xl h-auto overflow-visible">
-            <text x="450" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md">You're Invited</text>
+            <!-- Path converted stroke + fill for self-drawing cursive calligraphy effect -->
+            <path class="calligraphy-path fill-brandGold stroke-brandGold" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="
+              M 70 85 C 50 60, 45 35, 75 30 C 90 28, 100 40, 95 60 C 88 85, 60 100, 45 110 C 65 110, 90 95, 115 75
+              M 130 90 C 125 78, 135 65, 145 65 C 155 65, 155 80, 150 90 C 145 100, 130 100, 130 90
+              M 170 65 L 165 90 C 165 98, 175 98, 180 92 L 185 85
+              M 195 70 C 190 85, 195 95, 205 95 C 215 95, 220 80, 220 70 L 220 95
+              M 235 60 L 235 63 M 235 72 L 235 95
+              M 250 65 L 255 95 M 245 78 L 265 78
+              M 275 65 L 285 95
+              M 290 60 C 290 55, 298 55, 298 60 L 290 68
+              M 315 80 C 310 65, 325 65, 325 78 C 325 90, 305 92, 310 98 C 315 102, 325 98, 330 92
+              M 370 45 L 365 95
+              M 385 65 L 395 95 L 405 65
+              M 415 60 L 415 63 M 415 72 L 415 95
+              M 430 65 L 435 95 M 425 78 L 445 78
+              M 460 80 C 455 80, 455 95, 465 95 C 475 95, 480 85, 475 75 C 470 65, 455 65, 455 80
+              M 495 60 L 495 95 C 495 105, 480 108, 475 100
+            " />
+            <!-- SVG Rendered Script Layer -->
+            <text x="450" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md opacity-0 animate-[fadeIn_0.6s_ease-in_2.2s_forwards]">You're Invited</text>
           </svg>
         </div>
 
@@ -314,7 +355,7 @@
     </div>
   </main>
 
-  <!-- Sticky Floating Share Button (Positioned safely inside iframe bounds) -->
+  <!-- Sticky Floating Share Button -->
   <div class="sticky bottom-6 float-right mr-4 sm:mr-6 mb-6 z-[9999]">
     <button 
       type="button" 
@@ -328,7 +369,7 @@
     </button>
   </div>
 
-  <!-- Share Modal Window (Pinned to Top of Viewport) -->
+  <!-- Share Modal Window -->
   <div id="shareModal" class="fixed top-0 left-0 right-0 bottom-0 bg-slate-900/60 backdrop-blur-sm z-[10000] flex items-start justify-center pt-6 sm:pt-12 px-4 hidden overflow-y-auto">
     <div class="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto my-0">
       
@@ -668,7 +709,6 @@
           url: shareUrl
         }).catch(function(err) {
           if (err.name !== 'AbortError') {
-            // Fallback if blocked inside iframe without allow="web-share"
             const fullMsg = `${shareText} ${shareUrl}`;
             navigator.clipboard.writeText(fullMsg).then(() => {
               showToast();
