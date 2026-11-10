@@ -43,7 +43,7 @@
       filter: drop-shadow(0px 8px 8px rgba(15, 23, 42, 0.45));
     }
 
-    /* Void Rise Entrance for Following Components (Simultaneous Reveal) */
+    /* Void Rise Entrance for Header and Following Components */
     @keyframes voidRise {
       0% {
         opacity: 0;
@@ -57,6 +57,7 @@
       }
     }
 
+    .anim-header,
     .anim-subtext,
     .anim-calendar-section,
     .anim-calendar-box,
@@ -64,7 +65,7 @@
     .anim-welcome-box,
     .anim-faq-box {
       opacity: 0;
-      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      animation: voidRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
     }
   </style>
 </head>
@@ -81,8 +82,8 @@
 
       <!-- Hero Content -->
       <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20">
-        <!-- 1. Calligraphy Static Banner -->
-        <div class="mb-2 sm:mb-4 relative flex justify-start">
+        <!-- 1. Calligraphy Animated Banner -->
+        <div class="mb-2 sm:mb-4 relative flex justify-start anim-header">
           <svg viewBox="0 0 900 140" class="w-full max-w-2xl h-auto overflow-visible">
             <text x="450" y="90" text-anchor="middle" class="font-script text-7xl sm:text-8xl md:text-9xl fill-brandGold drop-shadow-md">You're Invited</text>
           </svg>
@@ -301,7 +302,7 @@
             </div>
             <div>
               <dt class="font-semibold text-slate-900 text-xs sm:text-lg">Where is the Sanctuary?</dt>
-              <dd class="text-slate-600 text-[11px] sm:text-base">The Sanctuary is located through the big red doors. You'll see them from the parking lot.</dd>
+              <dd class="text-slate-600 text-[11px] sm:text-base">The Sanctuary is located through the big red doors. You'll see them right from the parking lot.</dd>
             </div>
             <div>
               <dt class="font-semibold text-slate-900 text-xs sm:text-lg">Where is the Family Life Center?</dt>
